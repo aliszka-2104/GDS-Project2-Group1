@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     public GameManager.ITEMS type;
     public bool isLegalOnStart;
+    public AnimationCurve curve;
 
     private Rigidbody2D rb;
     private Collider2D myCollider;
@@ -19,6 +20,9 @@ public class Item : MonoBehaviour
     private bool isSomeoneTouchingMe = false;
     private bool isActive = true;
 
+    private const float gravity = 9.81f;
+    private Vector2 myStartPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,8 @@ public class Item : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
         gameManager = FindObjectOfType<GameManager>();
         itemManager = FindObjectOfType<ItemManager>();
+
+        myStartPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -66,11 +72,51 @@ public class Item : MonoBehaviour
 
     private void ItemSwiped()
     {
-        rb.velocity = direction.normalized * speed;
+        Move();
         isSomeoneTouchingMe = false;
         gameManager.ItemSwiped(this);
         isActive = false;
         transform.SetParent(gameManager.transform, true);
+    }
+
+    private void Move()
+    {
+        //rb.velocity = direction.normalized * speed;
+
+        //StartCoroutine(SimulateMovement());
+
+        rb.WakeUp();
+        rb.AddForce(direction * speed);
+        gameObject.layer = 11;
+    }
+
+    IEnumerator SimulateMovement()
+    {
+        //Vector2 end = myStartPosition+direction*speed;
+
+        //var yOffset = 6 - myStartPosition.y;
+        //var xOffset = direction.x / direction.y * yOffset;
+
+        //Vector2 end = new Vector2(myStartPosition.x + xOffset, 6);
+
+        Vector2 end = new Vector2(15 * Mathf.Sign(direction.x)+myStartPosition.x, myStartPosition.y+2);
+        var offset = 10.0f*direction.y;
+        var duration = 2f/Vector2.SqrMagnitude(direction);
+        duration = Mathf.Clamp(duration, 0.5f, 2f);
+
+        float time = 0;
+        while (time <= duration)
+        {
+            time += Time.deltaTime;
+
+            float linearT = time / duration;
+            float heightT = curve.Evaluate(linearT);
+            float height = Mathf.Lerp(0f, offset, heightT);
+
+            transform.position = Vector2.Lerp(myStartPosition, end, linearT) + new Vector2(0f, height);
+
+            yield return null;
+        }
     }
 
     void OnBecameInvisible()
