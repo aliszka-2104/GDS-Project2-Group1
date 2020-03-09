@@ -5,38 +5,65 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[Serializable]
+public class LevelUp
+{
+    public int score;
+    public int newLegalItems;
+    public int newForbiddenItems;
+    [Range(0, 100)]
+    public float smallBagChance;
+    [Range(0, 100)]
+    public float mediumBagChance;
+    [Range(0, 100)]
+    public float largeBagChance;
+}
+
 public class GameManager : MonoBehaviour
 {
     public enum ITEMS
     {
         _NONE_,
+
         GUN,
         GRANADE,
-        TEDDY,
-        SHAMPOO,
+        PARROT,
+        POISON,
+        BOMB,
+
+        CYLINDER,
+        JAM,
         BOOK,
-        IDCARD,
-        BRUSH,
+        PILLOW,
+        LAPTOP,
         HEADPHONES,
-        KEYS
+        PERFUME,
+        SUNGLASSES,
     }
 
+    public List<LevelUp> levels = new List<LevelUp>();
+    private int currentLevel = 0;
+
     public ItemManager itemManager;
-    public GameObject suitcasePrefab;
+    public GameObject largeBagPrefab;
+    public GameObject mediumBagPrefab;
+    public GameObject smallBagPrefab;
     public bool canInteractWithToys = true;
+    public Animator bagAnimator;
+    public Animator gameOverAnimator;
+    public Animator gameOverHighScoreAnimator;
 
-
-    [SerializeField]
-    private Text scoreText;
-    [SerializeField]
-    private Text timeText;
-    [SerializeField]
-    private GameObject gameOver;
-    [SerializeField]
-    private GameObject okText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text highscoreText;
+    [SerializeField] private Text gameOverScoreText;
+    [SerializeField] private Text timeText;
+    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject gameOverHighScore;
+    [SerializeField] private GameObject okText;
+    [SerializeField] private BlinkingLight light;
     private int score = 0;
-    private int timeToResolveSuitcase = 3;
-    private int itemsToBeRemovedCount;
+    private int timeToResolveSuitcase = 5;
+    private int itemsRemovedByFar;
 
     private Suitcase currentSuitcase;
     private float countDownLeft = 0f;
@@ -44,8 +71,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "Score: " +Environment.NewLine+ score;
+        Save.LoadGame();
+        gameOver.SetActive(false);
+        gameOverHighScore.SetActive(false);
+        okText.SetActive(false);
+        scoreText.text = score.ToString();
 
+        itemManager.LevelUp(levels[currentLevel]);
         CreateSuitcase();
     }
 
@@ -55,15 +87,35 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private GameObject GetRandomBagPrefab()
+    {
+        float r = UnityEngine.Random.Range(0f, 1f);
+        float chancesSum = levels[currentLevel].smallBagChance + levels[currentLevel].mediumBagChance + levels[currentLevel].largeBagChance;
+
+        if (r * chancesSum < levels[currentLevel].smallBagChance)
+        {
+            return smallBagPrefab;
+        }
+        if (r * chancesSum < levels[currentLevel].smallBagChance + levels[currentLevel].mediumBagChance)
+        {
+            return mediumBagPrefab;
+        }
+        return largeBagPrefab;
+    }
+
     private void CreateSuitcase()
     {
+        bagAnimator.SetTrigger("ReloadBag");
+        //bagAnimator.SetFloat("RepeatTime", 5f);
+
         StartCoroutine(StartCountdown(timeToResolveSuitcase));
-        var suitcase = Instantiate(suitcasePrefab);
+        var suitcase = Instantiate(GetRandomBagPrefab());
         currentSuitcase = suitcase.GetComponent<Suitcase>();
 
-        itemsToBeRemovedCount = itemManager.illegalItemsPerSuitcase;
+        itemsRemovedByFar = 0;
         canInteractWithToys = true;
-        timeText.text = timeToResolveSuitcase.ToString();
+        //timeText.text = timeToResolveSuitcase.ToString();
+        light.StartBlinking(timeToResolveSuitcase);
     }
 
     public void ItemSwiped(Item item)
@@ -77,10 +129,10 @@ public class GameManager : MonoBehaviour
         else
         {
             score++;
-            if (score%15==0 && itemManager.illegalItemsPerSuitcase<3) itemManager.illegalItemsPerSuitcase++;
-            itemsToBeRemovedCount--;
+            //if (score%15==0 && itemManager.illegalItemsPerSuitcase<3) itemManager.illegalItemsPerSuitcase++;
+            itemsRemovedByFar++;
 
-            if (itemsToBeRemovedCount == 0)
+            if (itemsRemovedByFar == itemManager.illegalItemsPerSuitcase)
             {
                 StopAllCoroutines();
                 canInteractWithToys = false;
@@ -89,27 +141,53 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        scoreText.text = "Score: " +Environment.NewLine+ score;
+        scoreText.text = score.ToString();
+    }
+
+    private void LevelUpIfYouShould()
+    {
+        if (currentLevel == levels.Count - 1) return;
+
+        if (score < levels[currentLevel + 1].score) return;
+
+        currentLevel++;
+        itemManager.LevelUp(levels[currentLevel]);
     }
 
     private void GameOver()
     {
         StopAllCoroutines();
-        gameOver.SetActive(true);
         canInteractWithToys = false;
-        Invoke("ReloadGame", 2);
+
+        if (Save.HighScore > score)
+        {
+            gameOver.SetActive(true);
+            gameOverAnimator.SetTrigger("GameOver");
+            gameOverScoreText.text = score.ToString();
+        }
+        else
+        {
+            gameOverHighScore.SetActive(true);
+            Save.HighScore = score;
+            gameOverHighScoreAnimator.SetTrigger("HighScore");
+            highscoreText.text = score.ToString();
+        }
+
+        Save.SaveGame();
+
+        //Invoke("ReloadGame", 2);
     }
 
-    private void ReloadGame()
+    public void ReloadGame()
     {
-        gameOver.SetActive(false);
-        okText.SetActive(false);
-
+        
         SceneManager.LoadScene(0);
     }
 
     private void SuitcaseResolved()
     {
+        light.StopBlinking();
+        LevelUpIfYouShould();
         okText.SetActive(false);
         Destroy(currentSuitcase.gameObject);
         CreateSuitcase();

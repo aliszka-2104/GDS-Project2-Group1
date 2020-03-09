@@ -7,16 +7,23 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public GameObject[] items;
-    public int illegalItemsPerSuitcase = 2;
-    public int totalItemsInCurrentSuitcase = 0;
+    public int illegalItemsPerSuitcase;
 
     //private Dictionary<GameManager.ITEMS, GameObject> prefabsWithNames = new Dictionary<GameManager.ITEMS, GameObject>();
     //private Dictionary<GameManager.ITEMS, bool> itemsLegality = new Dictionary<GameManager.ITEMS, bool>();
 
     private Dictionary<GameManager.ITEMS, (bool legality, GameObject prefab)> allPrefabs = new Dictionary<GameManager.ITEMS, (bool legality, GameObject prefab)>();
 
+    private Dictionary<GameManager.ITEMS, GameObject> legalInGame = new Dictionary<GameManager.ITEMS, GameObject>();
+    private Dictionary<GameManager.ITEMS, GameObject> legalNotInGame = new Dictionary<GameManager.ITEMS, GameObject>();
+    private Dictionary<GameManager.ITEMS, GameObject> forbiddenInGame = new Dictionary<GameManager.ITEMS, GameObject>();
+    private Dictionary<GameManager.ITEMS, GameObject> forbiddenNotInGame = new Dictionary<GameManager.ITEMS, GameObject>();
+
+    private Forbidden forbiddenSc;
+
     void Awake()
     {
+        forbiddenSc = FindObjectOfType<Forbidden>();
         #region Fill dictionaries
         foreach (var item in items)
         {
@@ -24,38 +31,75 @@ public class ItemManager : MonoBehaviour
 
             allPrefabs.Add(sc.type, (sc.isLegalOnStart, item));
 
+            if (sc.isLegalOnStart) legalNotInGame.Add(sc.type, item);
+            else forbiddenNotInGame.Add(sc.type, item);
+
             //prefabsWithNames.Add(sc.type, item);
             //itemsLegality.Add(sc.type, sc.isLegalOnStart);
         }
         #endregion
     }
 
-    public List<GameObject> GetPrefabs(int prefabsCount)
+    public void LevelUp(LevelUp level)
     {
-        totalItemsInCurrentSuitcase = prefabsCount;
+        for(int i=0;i<level.newLegalItems;i++)
+        {
+            int r = UnityEngine.Random.Range(0, legalNotInGame.Count);
+            var item = legalNotInGame.ElementAt(r);
+            legalNotInGame.Remove(item.Key);
+            legalInGame.Add(item.Key,item.Value);
+        }
+        for (int i = 0; i < level.newForbiddenItems; i++)
+        {
+            int r = UnityEngine.Random.Range(0, forbiddenNotInGame.Count);
+            var item = forbiddenNotInGame.ElementAt(r);
+            forbiddenNotInGame.Remove(item.Key);
+            forbiddenInGame.Add(item.Key, item.Value);
+            forbiddenSc.AddItem(item.Key);
+        }
+    }
+
+    public List<GameObject> GetPrefabs(int max, int itemsCount, int forbiddenCount)
+    {
+        illegalItemsPerSuitcase = forbiddenCount;
 
         List<GameObject> prefabs = new List<GameObject>();
-        int legalAdded = 0;
-        int illegalAdded = 0;
+        //int legalAdded = 0;
+        //int illegalAdded = 0;
 
-        do
+        for(int i=0;i< forbiddenCount; i++)
         {
-            foreach (var item in allPrefabs.OrderBy(x => UnityEngine.Random.value))
-            {
-                if (item.Value.legality && legalAdded < prefabsCount - illegalItemsPerSuitcase)
-                {
-                    prefabs.Add(item.Value.prefab);
-                    legalAdded++;
-                }
-                else if (!item.Value.legality && illegalAdded < illegalItemsPerSuitcase)
-                {
-                    prefabs.Add(item.Value.prefab);
-                    illegalAdded++;
-                }
+            int r = UnityEngine.Random.Range(0, forbiddenInGame.Count);
+            prefabs.Add(forbiddenInGame.ElementAt(r).Value);
+        }
+        for (int i = 0; i < itemsCount-forbiddenCount; i++)
+        {
+            int r = UnityEngine.Random.Range(0, legalInGame.Count);
+            prefabs.Add(legalInGame.ElementAt(r).Value);
+        }
+        for (int i = 0; i < max-itemsCount; i++)
+        {
+            prefabs.Add(null);
+        }
 
-                if (prefabs.Count == prefabsCount) break;
-            }
-        } while (prefabs.Count < prefabsCount);
+        //do
+        //{
+        //    foreach (var item in allPrefabs.OrderBy(x => UnityEngine.Random.value))
+        //    {
+        //        if (item.Value.legality && legalAdded < prefabsCount - illegalItemsPerSuitcase)
+        //        {
+        //            prefabs.Add(item.Value.prefab);
+        //            legalAdded++;
+        //        }
+        //        else if (!item.Value.legality && illegalAdded < illegalItemsPerSuitcase)
+        //        {
+        //            prefabs.Add(item.Value.prefab);
+        //            illegalAdded++;
+        //        }
+
+        //        if (prefabs.Count == prefabsCount) break;
+        //    }
+        //} while (prefabs.Count < prefabsCount);
 
         //do
         //{
@@ -76,6 +120,7 @@ public class ItemManager : MonoBehaviour
         //    }
         //} while (prefabs.Count < prefabsCount);
 
+        prefabs = prefabs.OrderBy(x => UnityEngine.Random.value).ToList();
         return prefabs;
     }
 

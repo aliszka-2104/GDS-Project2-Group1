@@ -296,3 +296,9 @@ D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\obj\De
 D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\obj\Debug\Assembly-CSharp.dll
 D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\obj\Debug\Assembly-CSharp.pdb
+D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\Temp\bin\Debug\Unity.2D.PixelPerfect.dll
+D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\Temp\bin\Debug\Unity.2D.PixelPerfect.Editor.dll
+D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\Temp\bin\Debug\Unity.2D.Sprite.Editor.dll
+D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\Temp\bin\Debug\Unity.2D.Sprite.Editor.pdb
+D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\Temp\bin\Debug\Unity.2D.PixelPerfect.Editor.pdb
+D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best Endless Game\Temp\bin\Debug\Unity.2D.PixelPerfect.pdb

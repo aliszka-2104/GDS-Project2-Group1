@@ -54,21 +54,52 @@ public class Item : MonoBehaviour
             {
                 if (isSomeoneTouchingMe)
                 {
-                    dragEnd = pos;
-                    //transform.position = new Vector3(pos.x,pos.y,transform.position.z);
+                    //Collider2D foundPropCollider = Physics2D.OverlapPoint(pos, LayerMask.GetMask("Bag"));
+                    //if (foundPropCollider == null)
+                    //{
+                    //    dragEnd = pos;
+                    //    direction = dragEnd - dragStart;
+                    //    if (direction != Vector2.zero) ItemSwiped();
+                    //}
+                    //else
+                    {
+                        //dragEnd = pos;
+                        transform.position = new Vector3(pos.x, pos.y, transform.position.z);
+                    }
                 }
             }
             else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
                 if (isSomeoneTouchingMe)
                 {
-                    dragEnd = pos;
+                    dragEnd = transform.position;
                     direction = dragEnd - dragStart;
-                    if(direction!=Vector2.zero)ItemSwiped();
+                    if (Vector2.Distance(dragStart, dragEnd) > 0)
+                    {
+                        ItemSwiped();
+                    }
+                    isSomeoneTouchingMe = false;
+
+                    //Collider2D foundPropCollider = Physics2D.OverlapPoint(pos, LayerMask.GetMask("Bag"));
+                    //if (foundPropCollider != null)
+                    //{
+                    //    transform.position = myStartPosition;
+                    //}
                 }
             }
         }
     }
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if(collision.gameObject.layer== LayerMask.NameToLayer("Bag"))
+    //    {
+    //        dragEnd = transform.position;
+    //        direction = dragEnd - dragStart;
+    //        if (direction != Vector2.zero) ItemSwiped();
+    //        Debug.Log("out of the bag!");
+    //    }
+    //}
 
     private void ItemSwiped()
     {
@@ -86,6 +117,7 @@ public class Item : MonoBehaviour
         //StartCoroutine(SimulateMovement());
 
         rb.WakeUp();
+        rb.gravityScale = 1;
         rb.AddForce(direction * speed);
         gameObject.layer = 11;
     }
@@ -99,9 +131,9 @@ public class Item : MonoBehaviour
 
         //Vector2 end = new Vector2(myStartPosition.x + xOffset, 6);
 
-        Vector2 end = new Vector2(15 * Mathf.Sign(direction.x)+myStartPosition.x, myStartPosition.y+2);
-        var offset = 10.0f*direction.y;
-        var duration = 2f/Vector2.SqrMagnitude(direction);
+        Vector2 end = new Vector2(15 * Mathf.Sign(direction.x) + myStartPosition.x, myStartPosition.y + 2);
+        var offset = 10.0f * direction.y;
+        var duration = 2f / Vector2.SqrMagnitude(direction);
         duration = Mathf.Clamp(duration, 0.5f, 2f);
 
         float time = 0;

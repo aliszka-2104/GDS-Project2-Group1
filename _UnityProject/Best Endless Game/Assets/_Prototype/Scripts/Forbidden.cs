@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Forbidden : MonoBehaviour
 {
-    public Sprite[] forbiddenItems;
+    public List<GameObject> forbiddenItems;
+
+    private Dictionary<GameManager.ITEMS, GameObject> labelsDictionary = new Dictionary<GameManager.ITEMS, GameObject>();
+    private int emptyIndex=0;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < forbiddenItems.Length; i++)
+        for (int i = 0; i < forbiddenItems.Count; i++)
         {
-            transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = forbiddenItems[i];
+            ItemLabel script = forbiddenItems[i].GetComponent<ItemLabel>();
+            labelsDictionary.Add(script.type,forbiddenItems[i]);
         }
+    }
+
+    public void AddItem(GameManager.ITEMS name)
+    {
+        Instantiate(labelsDictionary[name], transform.GetChild(emptyIndex));
+        emptyIndex++;
     }
 
     // Update is called once per frame
