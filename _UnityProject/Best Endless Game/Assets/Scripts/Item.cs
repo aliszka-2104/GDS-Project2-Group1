@@ -7,8 +7,10 @@ public class Item : MonoBehaviour
     public GameManager.ITEMS type;
     public bool isLegalOnStart;
     public AnimationCurve curve;
+    public Sprite[] variants;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private Collider2D myCollider;
     private GameManager gameManager;
     private ItemManager itemManager;
@@ -32,6 +34,11 @@ public class Item : MonoBehaviour
         itemManager = FindObjectOfType<ItemManager>();
 
         myStartPosition = transform.position;
+        if (variants.Length>0)
+        {
+            sr = GetComponent<SpriteRenderer>();
+            sr.sprite = variants[Random.Range(0, variants.Length)];
+        }
     }
 
     // Update is called once per frame

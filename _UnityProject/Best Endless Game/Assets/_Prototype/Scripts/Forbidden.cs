@@ -21,6 +21,7 @@ public class Forbidden : MonoBehaviour
 
     public void AddItem(GameManager.ITEMS name)
     {
+        return;
         Instantiate(labelsDictionary[name], transform.GetChild(emptyIndex));
         emptyIndex++;
     }
