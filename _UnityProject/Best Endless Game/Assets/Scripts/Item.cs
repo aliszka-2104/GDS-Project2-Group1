@@ -54,16 +54,16 @@ public class Item : MonoBehaviour
             {
                 if (isSomeoneTouchingMe)
                 {
-                    //Collider2D foundPropCollider = Physics2D.OverlapPoint(pos, LayerMask.GetMask("Bag"));
-                    //if (foundPropCollider == null)
-                    //{
-                    //    dragEnd = pos;
-                    //    direction = dragEnd - dragStart;
-                    //    if (direction != Vector2.zero) ItemSwiped();
-                    //}
-                    //else
+                    Collider2D foundPropCollider = Physics2D.OverlapPoint(pos, LayerMask.GetMask("Bag"));
+                    if (foundPropCollider == null)
                     {
-                        //dragEnd = pos;
+                        dragEnd = pos;
+                        direction = dragEnd - dragStart;
+                        if (direction != Vector2.zero) ItemSwiped();
+                    }
+                    else
+                    {
+                        dragEnd = pos;
                         transform.position = new Vector3(pos.x, pos.y, transform.position.z);
                     }
                 }
@@ -72,19 +72,19 @@ public class Item : MonoBehaviour
             {
                 if (isSomeoneTouchingMe)
                 {
-                    dragEnd = transform.position;
-                    direction = dragEnd - dragStart;
-                    if (Vector2.Distance(dragStart, dragEnd) > 0)
-                    {
-                        ItemSwiped();
-                    }
+                    //dragEnd = transform.position;
+                    //direction = dragEnd - dragStart;
+                    //if (Vector2.Distance(dragStart, dragEnd) > 0)
+                    //{
+                    //    ItemSwiped();
+                    //}
                     isSomeoneTouchingMe = false;
 
-                    //Collider2D foundPropCollider = Physics2D.OverlapPoint(pos, LayerMask.GetMask("Bag"));
-                    //if (foundPropCollider != null)
-                    //{
-                    //    transform.position = myStartPosition;
-                    //}
+                    Collider2D foundPropCollider = Physics2D.OverlapPoint(pos, LayerMask.GetMask("Bag"));
+                    if (foundPropCollider != null)
+                    {
+                        transform.position = myStartPosition;
+                    }
                 }
             }
         }
@@ -92,7 +92,7 @@ public class Item : MonoBehaviour
 
     //private void OnTriggerExit2D(Collider2D collision)
     //{
-    //    if(collision.gameObject.layer== LayerMask.NameToLayer("Bag"))
+    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Bag"))
     //    {
     //        dragEnd = transform.position;
     //        direction = dragEnd - dragStart;
