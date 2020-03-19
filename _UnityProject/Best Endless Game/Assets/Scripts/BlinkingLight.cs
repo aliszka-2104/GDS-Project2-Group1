@@ -5,6 +5,8 @@ using UnityEngine;
 public class BlinkingLight : MonoBehaviour
 {
     public Material material;
+    public Sprite lightOn;
+    public Sprite lightOff;
     public float maxBlink;
     public float minBlink;
     public float timeInSeconds;
@@ -14,10 +16,13 @@ public class BlinkingLight : MonoBehaviour
     public float endTimeOn;
     public float timeCut= 0.02f;
 
+    private SpriteRenderer sr;
+
     // Start is called before the first frame update
     void Start()
     {
         material.SetFloat("_TintAmount", 0f);
+        sr = GetComponent<SpriteRenderer>();
         //StartCoroutine(Blink(startTimeOn, startTimeOff));
     }
     
@@ -45,10 +50,12 @@ public class BlinkingLight : MonoBehaviour
     {
 
         material.SetFloat("_TintAmount", maxBlink);
+        sr.sprite = lightOn;
        yield return new WaitForSeconds(timeOn);
         if (timeOff>0)
         {
             material.SetFloat("_TintAmount", minBlink);
+            sr.sprite = lightOff;
             yield return new WaitForSeconds(timeOff); 
         }
 
