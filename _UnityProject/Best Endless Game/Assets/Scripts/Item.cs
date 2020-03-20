@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     private Collider2D myCollider;
     private GameManager gameManager;
     private ItemManager itemManager;
+    private AudioManager audioManager;
 
     private Vector2 dragStart = new Vector2();
     private Vector2 dragEnd = new Vector2();
@@ -32,6 +33,7 @@ public class Item : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
         gameManager = FindObjectOfType<GameManager>();
         itemManager = FindObjectOfType<ItemManager>();
+        audioManager = FindObjectOfType<AudioManager>();
 
         myStartPosition = transform.position;
         if (variants.Length>0)
@@ -55,6 +57,7 @@ public class Item : MonoBehaviour
                 {
                     dragStart = pos;
                     isSomeoneTouchingMe = true;
+                    audioManager.PlayItemGrabbed();
                 }
             }
             else if (touch.phase == TouchPhase.Moved)
@@ -91,6 +94,12 @@ public class Item : MonoBehaviour
                     if (foundPropCollider != null)
                     {
                         transform.position = myStartPosition;
+                    }
+                    else
+                    {
+                        dragEnd = pos;
+                        direction = dragEnd - dragStart;
+                        if (direction != Vector2.zero) ItemSwiped();
                     }
                 }
             }

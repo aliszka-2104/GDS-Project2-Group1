@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
     private int currentLevel = 0;
 
     public ItemManager itemManager;
+    public AudioManager audioManager;
+
     public GameObject largeBagPrefab;
     public GameObject mediumBagPrefab;
     public GameObject smallBagPrefab;
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
 
         itemManager.LevelUp(levels[currentLevel]);
         CreateSuitcase();
+        audioManager.PlayBackgroundMusic();
     }
 
     // Update is called once per frame
@@ -160,6 +163,7 @@ public class GameManager : MonoBehaviour
         canInteractWithToys = true;
         //timeText.text = timeToResolveSuitcase.ToString();
         light.StartBlinking(timeToResolveSuitcase);
+        audioManager.PlayNewBag();
     }
 
     public void ItemSwiped(Item item)
@@ -186,6 +190,7 @@ public class GameManager : MonoBehaviour
         }
 
         scoreText.text = score.ToString();
+        audioManager.PlayItemThrown();
     }
 
     private void LevelUpIfYouShould()
@@ -218,6 +223,8 @@ public class GameManager : MonoBehaviour
         }
 
         Save.SaveGame();
+
+        audioManager.PlayGameOverSounds();
 
         //Invoke("ReloadGame", 2);
     }

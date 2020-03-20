@@ -708,12 +708,12 @@ PrefabInstance:
     - target: {fileID: 6801115730391544919, guid: 3765d5b2be2c6a3419c11c428fa85b62,
         type: 3}
       propertyPath: forbiddenMin
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6801115730391544919, guid: 3765d5b2be2c6a3419c11c428fa85b62,
         type: 3}
       propertyPath: forbiddenMax
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6801115730640130394, guid: 3765d5b2be2c6a3419c11c428fa85b62,
         type: 3}
