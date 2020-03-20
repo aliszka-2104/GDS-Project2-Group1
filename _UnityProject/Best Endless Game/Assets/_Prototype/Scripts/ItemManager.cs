@@ -59,6 +59,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    public Sprite GetLatestObjectSprite()
+    {
+        return forbiddenInGame.ElementAt(forbiddenInGame.Count-1).Value.GetComponent<SpriteRenderer>().sprite;
+    }
+
     public List<GameObject> GetPrefabs(int max, int itemsCount, int forbiddenCount)
     {
         illegalItemsPerSuitcase = forbiddenCount;

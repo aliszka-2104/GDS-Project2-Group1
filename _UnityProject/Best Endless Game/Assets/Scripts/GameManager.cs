@@ -88,9 +88,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text timeText;
     [SerializeField] private GameObject gameOver;
     [SerializeField] private GameObject gameOverHighScore;
-    [SerializeField] private GameObject okText;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private BlinkingLight light;
+    //[SerializeField] private GameObject newForbiddenScreen;
+    //[SerializeField] private GameObject newForbiddenImage;
+    [SerializeField] private ForbiddenItemScreen forbiddenItemScreen;
     private int score = 0;
     private int timeToResolveSuitcase = 5;
     private int itemsRemovedByFar;
@@ -104,7 +106,6 @@ public class GameManager : MonoBehaviour
         Save.LoadGame();
         gameOver.SetActive(false);
         gameOverHighScore.SetActive(false);
-        okText.SetActive(false);
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
@@ -122,8 +123,13 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        Time.timeScale = 0;
+        Pause();
         pauseMenu.SetActive(true);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
         canInteractWithToys = false;
     }
 
@@ -131,6 +137,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        forbiddenItemScreen.Hide();
         canInteractWithToys = true;
     }
 
@@ -170,21 +177,17 @@ public class GameManager : MonoBehaviour
     {
         if (itemManager.IsLegal(item.type))
         {
-            //dupa
-            //game over
             GameOver();
         }
         else
         {
             score++;
-            //if (score%15==0 && itemManager.illegalItemsPerSuitcase<3) itemManager.illegalItemsPerSuitcase++;
             itemsRemovedByFar++;
 
             if (itemsRemovedByFar == itemManager.illegalItemsPerSuitcase)
             {
                 StopAllCoroutines();
                 canInteractWithToys = false;
-                okText.SetActive(true);
                 Invoke("SuitcaseResolved", 0);
             }
         }
@@ -201,6 +204,12 @@ public class GameManager : MonoBehaviour
 
         currentLevel++;
         itemManager.LevelUp(levels[currentLevel]);
+        if (levels[currentLevel].newForbiddenItems == 1)
+        {
+            bagAnimator.SetTrigger("ReloadBag");
+            forbiddenItemScreen.Show(itemManager.GetLatestObjectSprite());
+            Pause();
+        }
     }
 
     private void GameOver()
@@ -231,7 +240,6 @@ public class GameManager : MonoBehaviour
 
     public void ReloadGame()
     {
-
         SceneManager.LoadScene(0);
     }
 
@@ -239,7 +247,6 @@ public class GameManager : MonoBehaviour
     {
         light.StopBlinking();
         LevelUpIfYouShould();
-        okText.SetActive(false);
         Destroy(currentSuitcase.gameObject);
         CreateSuitcase();
     }

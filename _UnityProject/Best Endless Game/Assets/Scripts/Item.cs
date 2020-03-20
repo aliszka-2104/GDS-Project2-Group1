@@ -34,11 +34,11 @@ public class Item : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         itemManager = FindObjectOfType<ItemManager>();
         audioManager = FindObjectOfType<AudioManager>();
+        sr = GetComponent<SpriteRenderer>();
 
         myStartPosition = transform.position;
         if (variants.Length>0)
         {
-            sr = GetComponent<SpriteRenderer>();
             sr.sprite = variants[Random.Range(0, variants.Length)];
         }
     }
@@ -57,6 +57,7 @@ public class Item : MonoBehaviour
                 {
                     dragStart = pos;
                     isSomeoneTouchingMe = true;
+                    sr.sortingLayerName = "Props";
                     audioManager.PlayItemGrabbed();
                 }
             }
@@ -94,6 +95,7 @@ public class Item : MonoBehaviour
                     if (foundPropCollider != null)
                     {
                         transform.position = myStartPosition;
+                        sr.sortingLayerName = "Baggage";
                     }
                     else
                     {
