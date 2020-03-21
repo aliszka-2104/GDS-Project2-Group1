@@ -355,7 +355,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -472,6 +472,9 @@ MonoBehaviour:
   - audioClip: {fileID: 8300000, guid: b4b278a9eb6e09146b45509c2bc6bddc, type: 3}
     volume: 1
   - audioClip: {fileID: 8300000, guid: 069491fe9903b574eb10be01fc10aaf5, type: 3}
+    volume: 1
+  achievement:
+  - audioClip: {fileID: 8300000, guid: a58f845d7b10c224aa6d8bf2bbc3f970, type: 3}
     volume: 1
 --- !u!4 &100339563
 Transform:
@@ -2430,7 +2433,7 @@ Canvas:
   m_GameObject: {fileID: 1456255597}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 1331694306}
   m_PlaneDistance: 120.1
   m_PixelPerfect: 1
@@ -2439,7 +2442,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1861252617
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1456255601
@@ -2450,8 +2453,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456255597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 110.1}
+  m_LocalScale: {x: 0.008333334, y: 0.008333334, z: 0.008333334}
   m_Children:
   - {fileID: 1838942867}
   - {fileID: 180413352}
@@ -2468,8 +2471,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 1919.9999, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1586726338
 GameObject:
   m_ObjectHideFlags: 0

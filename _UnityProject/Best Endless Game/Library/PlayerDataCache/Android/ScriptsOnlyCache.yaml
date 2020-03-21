@@ -1,8 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AchievementManager
+    - AudioManager
     - BlinkingLight
     - Forbidden
+    - ForbiddenItemScreen
     - GameManager
     - Item
     - ItemLabel
@@ -96,6 +99,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -139,73 +146,79 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12676}
     - Class: 114
-      Script: {instanceID: 12886}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 12932}
+      Script: {instanceID: 12888}
     - Class: 114
-      Script: {instanceID: 12990}
+      Script: {instanceID: 12934}
     - Class: 114
-      Script: {instanceID: 13098}
+      Script: {instanceID: 12992}
     - Class: 114
-      Script: {instanceID: 13212}
+      Script: {instanceID: 13100}
     - Class: 114
-      Script: {instanceID: 13256}
+      Script: {instanceID: 13214}
     - Class: 114
-      Script: {instanceID: 13348}
+      Script: {instanceID: 13258}
     - Class: 114
-      Script: {instanceID: 13378}
+      Script: {instanceID: 13350}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 13380}
     - Class: 114
-      Script: {instanceID: 13532}
+      Script: {instanceID: 13406}
     - Class: 114
-      Script: {instanceID: 13686}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 13750}
+      Script: {instanceID: 13688}
+    - Class: 114
+      Script: {instanceID: 13716}
     - Class: 114
       Script: {instanceID: 13754}
     - Class: 114
-      Script: {instanceID: 13774}
+      Script: {instanceID: 13758}
     - Class: 114
-      Script: {instanceID: 13850}
+      Script: {instanceID: 13778}
     - Class: 114
-      Script: {instanceID: 13906}
+      Script: {instanceID: 13854}
     - Class: 114
-      Script: {instanceID: 13918}
+      Script: {instanceID: 13910}
     - Class: 114
-      Script: {instanceID: 13936}
+      Script: {instanceID: 13922}
     - Class: 114
-      Script: {instanceID: 13944}
+      Script: {instanceID: 13940}
     - Class: 114
-      Script: {instanceID: 14256}
+      Script: {instanceID: 13948}
     - Class: 114
-      Script: {instanceID: 14272}
+      Script: {instanceID: 14260}
     - Class: 114
-      Script: {instanceID: 14324}
+      Script: {instanceID: 14276}
     - Class: 114
-      Script: {instanceID: 14558}
+      Script: {instanceID: 14328}
     - Class: 114
-      Script: {instanceID: 14752}
+      Script: {instanceID: 14562}
     - Class: 114
-      Script: {instanceID: 14782}
+      Script: {instanceID: 14756}
     - Class: 114
-      Script: {instanceID: 14800}
+      Script: {instanceID: 14786}
     - Class: 114
-      Script: {instanceID: 15010}
+      Script: {instanceID: 14804}
     - Class: 114
-      Script: {instanceID: 15012}
+      Script: {instanceID: 14864}
     - Class: 114
       Script: {instanceID: 15016}
     - Class: 114
-      Script: {instanceID: 15044}
+      Script: {instanceID: 15018}
     - Class: 114
-      Script: {instanceID: 15068}
+      Script: {instanceID: 15022}
     - Class: 114
-      Script: {instanceID: 15070}
+      Script: {instanceID: 15050}
     - Class: 114
-      Script: {instanceID: 15190}
+      Script: {instanceID: 15074}
+    - Class: 114
+      Script: {instanceID: 15076}
     - Class: 114
       Script: {instanceID: 15196}
+    - Class: 114
+      Script: {instanceID: 15202}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -613,6 +626,12 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineAsset
   - hash:
       serializedVersion: 2
+      Hash: f1bb9be2a1454db357bd9475adecbe6f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
+  - hash:
+      serializedVersion: 2
       Hash: 5e1eefcd5106de6c2e85908a3b2d3f04
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
@@ -685,7 +704,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: a29b58dc72a707939ac07c2ad925a999
+      Hash: 177d8f41f4d163017ae07f922189f134
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -779,6 +798,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalReceiver
+  - hash:
+      serializedVersion: 2
+      Hash: 659264199dc087f6fe866c772bab9e47
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AchievementManager
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
@@ -1025,6 +1050,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: 
     className: SceneRenderPipeline
+  - hash:
+      serializedVersion: 2
+      Hash: 3b8ac2e1cbca7c469c327c176d27ff21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ForbiddenItemScreen
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f

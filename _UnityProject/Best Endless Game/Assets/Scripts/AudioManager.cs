@@ -17,6 +17,7 @@ public class AudioClipVolume
     public AudioClipVolume[] newBag;
     public AudioClipVolume[] itemGrabed;
     public AudioClipVolume[] itemThrown;
+    public AudioClipVolume[] achievement;
 
     private AudioSource audioSource;
     private AudioManager manager;
@@ -51,6 +52,11 @@ public class AudioClipVolume
     public void PlayNewBag()
     {
         PlayClips(newBag);
+    }
+
+    public void PlayTrophy()
+    {
+        PlayClips(achievement);
     }
 
     private void PlayClips(AudioClipVolume[] clips)

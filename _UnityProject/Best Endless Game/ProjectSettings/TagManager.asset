@@ -54,6 +54,9 @@ TagManager:
   - name: Props
     uniqueID: 52919803
     locked: 0
-  - name: 
+  - name: UI
     uniqueID: 2433714679
+    locked: 0
+  - name: New Layer
+    uniqueID: 2461339195
     locked: 0

@@ -185,7 +185,10 @@ public class GameManager : MonoBehaviour
         {
             score++;
             itemsRemovedByFar++;
-            achievementManager.CheckAchievement(score);
+            if(achievementManager.CheckAchievement(score))
+            {
+                audioManager.PlayTrophy();
+            }
 
             if (itemsRemovedByFar == itemManager.illegalItemsPerSuitcase)
             {
@@ -220,7 +223,7 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         canInteractWithToys = false;
 
-        if (Save.HighScore > score)
+        if (Save.HighScore >= score)
         {
             gameOver.SetActive(true);
             gameOverAnimator.SetTrigger("GameOver");

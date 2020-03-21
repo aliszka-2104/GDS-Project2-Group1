@@ -26,16 +26,17 @@ public class AchievementManager : MonoBehaviour
         achievementScreen.SetActive(false);
     }
 
-    public void CheckAchievement(int score)
+    public bool CheckAchievement(int score)
     {
-        if (!achievements.Any(a => a.score == score)) return;
+        if (!achievements.Any(a => a.score == score)) return false;
 
         var gained = achievements.First(a => a.score == score);
-        if (Save.GetAchievementGained(gained.name)) return;
+        if (Save.GetAchievementGained(gained.name)) return false;
 
         Save.SetAchievementGained(gained.name);
         Save.SaveGame();
         StartCoroutine(ShowAchievement(gained));
+        return true;
     }
 
     private IEnumerator ShowAchievement(Achievement gained)
