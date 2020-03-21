@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     public ItemManager itemManager;
     public AudioManager audioManager;
+    public AchievementManager achievementManager;
 
     public GameObject largeBagPrefab;
     public GameObject mediumBagPrefab;
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Save.SetAchievementNames(achievementManager.achievements);
         Save.LoadGame();
         gameOver.SetActive(false);
         gameOverHighScore.SetActive(false);
@@ -183,6 +185,7 @@ public class GameManager : MonoBehaviour
         {
             score++;
             itemsRemovedByFar++;
+            achievementManager.CheckAchievement(score);
 
             if (itemsRemovedByFar == itemManager.illegalItemsPerSuitcase)
             {

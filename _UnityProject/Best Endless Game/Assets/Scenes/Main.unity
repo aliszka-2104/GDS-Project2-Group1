@@ -686,6 +686,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161774056}
   m_CullTransparentMesh: 0
+--- !u!1 &176847482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176847484}
+  - component: {fileID: 176847483}
+  m_Layer: 0
+  m_Name: __AchievementManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &176847483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176847482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0670a51a005dee7448fd148a8a204863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievements:
+  - score: 5
+    name: A1
+    image: {fileID: 21300000, guid: ac1670b18a930c24b83a1ab4a68eea34, type: 3}
+  - score: 10
+    name: A2
+    image: {fileID: 21300000, guid: 18f53135c1c8da542a7092eacc5a0bb4, type: 3}
+  - score: 15
+    name: A3
+    image: {fileID: 21300000, guid: 250865c107c61f34285660880ef35b61, type: 3}
+  achievementScreen: {fileID: 428875489}
+  time: 1.5
+--- !u!4 &176847484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176847482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180413351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1122,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 328551077}
   m_CullTransparentMesh: 0
+--- !u!1 &428875489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 428875492}
+  - component: {fileID: 428875491}
+  - component: {fileID: 428875490}
+  m_Layer: 5
+  m_Name: TrophyScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &428875490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428875489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ac1670b18a930c24b83a1ab4a68eea34, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &428875491
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428875489}
+  m_CullTransparentMesh: 0
+--- !u!224 &428875492
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428875489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1456255601}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 117.599976, y: 0}
+  m_SizeDelta: {x: 235.20001, y: 235.20001}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &479724482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2461,7 @@ RectTransform:
   - {fileID: 1664786999}
   - {fileID: 1594374945}
   - {fileID: 2138769775}
+  - {fileID: 428875492}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2993,6 +3122,7 @@ MonoBehaviour:
     largeBagChance: 33.333332
   itemManager: {fileID: 793251249}
   audioManager: {fileID: 100339562}
+  achievementManager: {fileID: 176847483}
   largeBagPrefab: {fileID: 3401713901367617423, guid: a7088d2444f691e47ad9c49ecd7c25ff,
     type: 3}
   mediumBagPrefab: {fileID: 542923248719375251, guid: 5c4c43045429a1145854a4bb231c4114,
