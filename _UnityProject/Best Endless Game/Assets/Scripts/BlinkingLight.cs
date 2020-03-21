@@ -9,12 +9,10 @@ public class BlinkingLight : MonoBehaviour
     public Sprite lightOff;
     public float maxBlink;
     public float minBlink;
-    public float timeInSeconds;
 
     public float startTimeOn;
-    public float startTimeOff;
     public float endTimeOn;
-    public float timeCut= 0.02f;
+    public float timeCut;
 
     private SpriteRenderer sr;
 

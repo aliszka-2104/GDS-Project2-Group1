@@ -28,10 +28,21 @@ public class AudioClipVolume
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        if(Save.Sound)
+        {
+            audioSource.volume = 1;
+        }
+        else
+        {
+            audioSource.volume = 0;
+        }
+    }
+
     public void PlayBackgroundMusic()
     {
-        audioSource.Stop();
-        audioSource.PlayOneShot(backgroundMusic);
+        //audioSource.PlayOneShot(backgroundMusic);
     }
 
     public void PlayGameOverSounds()
@@ -65,11 +76,5 @@ public class AudioClipVolume
         {
             audioSource.PlayOneShot(clip.audioClip,clip.volume);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

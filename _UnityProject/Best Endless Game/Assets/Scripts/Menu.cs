@@ -19,5 +19,10 @@ public class Menu : MonoBehaviour
     {
         Save.ToggleSound();
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     
 }

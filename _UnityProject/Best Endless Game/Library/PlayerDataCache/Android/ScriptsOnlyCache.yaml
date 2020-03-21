@@ -10,6 +10,7 @@ ScriptsOnlyBuild:
     - Item
     - ItemLabel
     - ItemManager
+    - Menu
     - Suitcase
     Unity.DeviceSimulator.Editor.dll:
     - Unity.DeviceSimulator.SimulatorWindow
@@ -51,11 +52,16 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineEditorResources
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.ShaderGraph.Editor.dll:
+    - UnityEditor.Graphing.GraphObject
+    - UnityEditor.ShaderGraph.Drawing.MaterialGraphEditWindow
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -114,9 +120,90 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11420}
     - Class: 114
-      Script: {instanceID: 11478}
-    - Class: 114
       Script: {instanceID: 11492}
+    - Class: 114
+      Script: {instanceID: 11654}
+    - Class: 114
+      Script: {instanceID: 11714}
+    - Class: 114
+      Script: {instanceID: 11796}
+    - Class: 114
+      Script: {instanceID: 12328}
+    - Class: 114
+      Script: {instanceID: 12562}
+    - Class: 114
+      Script: {instanceID: 12850}
+    - Class: 114
+      Script: {instanceID: 13214}
+    - Class: 114
+      Script: {instanceID: 13258}
+    - Class: 114
+      Script: {instanceID: 13350}
+    - Class: 114
+      Script: {instanceID: 13380}
+    - Class: 114
+      Script: {instanceID: 13716}
+    - Class: 114
+      Script: {instanceID: 13758}
+    - Class: 114
+      Script: {instanceID: 13854}
+    - Class: 114
+      Script: {instanceID: 13922}
+    - Class: 114
+      Script: {instanceID: 14276}
+    - Class: 114
+      Script: {instanceID: 14786}
+    - Class: 114
+      Script: {instanceID: 14864}
+    - Class: 114
+      Script: {instanceID: 15016}
+    - Class: 114
+      Script: {instanceID: 15050}
+    - Class: 114
+      Script: {instanceID: 25864}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Menu.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11360}
+    - Class: 114
+      Script: {instanceID: 11420}
+    - Class: 114
+      Script: {instanceID: 11478}
     - Class: 114
       Script: {instanceID: 11590}
     - Class: 114
@@ -146,8 +233,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12676}
     - Class: 114
-      Script: {instanceID: 12850}
-    - Class: 114
       Script: {instanceID: 12888}
     - Class: 114
       Script: {instanceID: 12934}
@@ -155,10 +240,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12992}
     - Class: 114
       Script: {instanceID: 13100}
-    - Class: 114
-      Script: {instanceID: 13214}
-    - Class: 114
-      Script: {instanceID: 13258}
     - Class: 114
       Script: {instanceID: 13350}
     - Class: 114
@@ -170,15 +251,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13688}
     - Class: 114
-      Script: {instanceID: 13716}
-    - Class: 114
       Script: {instanceID: 13754}
     - Class: 114
-      Script: {instanceID: 13758}
-    - Class: 114
       Script: {instanceID: 13778}
-    - Class: 114
-      Script: {instanceID: 13854}
     - Class: 114
       Script: {instanceID: 13910}
     - Class: 114
@@ -198,13 +273,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14756}
     - Class: 114
-      Script: {instanceID: 14786}
-    - Class: 114
       Script: {instanceID: 14804}
-    - Class: 114
-      Script: {instanceID: 14864}
-    - Class: 114
-      Script: {instanceID: 15016}
     - Class: 114
       Script: {instanceID: 15018}
     - Class: 114
@@ -219,17 +288,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 15196}
     - Class: 114
       Script: {instanceID: 15202}
+    - Class: 114
+      Script: {instanceID: 25864}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
-    - Class: 135
-      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -704,7 +771,7 @@ ScriptsOnlyBuild:
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: 177d8f41f4d163017ae07f922189f134
+      Hash: 0436f03f300b470c4878bc4ce27adfe7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -812,7 +879,7 @@ ScriptsOnlyBuild:
     className: HorizontalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: edc3bdcce8387a39ec8079cd3c0007cf
+      Hash: b4cf8e5f2072578bb23d01b2b3eadb78
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BlinkingLight
@@ -1212,7 +1279,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Menu
   platform: 13
   scenePathNames:
+  - Assets/Scenes/Menu.unity
   - Assets/Scenes/Main.unity
   playerPath: D:/_GDS/Zadanie2/builds/new

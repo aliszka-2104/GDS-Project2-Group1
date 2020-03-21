@@ -10,6 +10,7 @@ public class LevelUp
 {
     public int score;
     public int newLegalItems;
+    public float timeToResolveSuitcase;
     public int newForbiddenItems;
     [Range(0, 100)]
     public float smallBagChance;
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public List<LevelUp> levels = new List<LevelUp>();
     private int currentLevel = 0;
+    private float timeToResolveSuitcase = 5;
 
     public ItemManager itemManager;
     public AudioManager audioManager;
@@ -95,7 +97,6 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private GameObject newForbiddenImage;
     [SerializeField] private ForbiddenItemScreen forbiddenItemScreen;
     private int score = 0;
-    private int timeToResolveSuitcase = 5;
     private int itemsRemovedByFar;
 
     private Suitcase currentSuitcase;
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
 
+        timeToResolveSuitcase = levels[currentLevel].timeToResolveSuitcase;
         itemManager.LevelUp(levels[currentLevel]);
         CreateSuitcase();
         audioManager.PlayBackgroundMusic();
@@ -210,6 +212,7 @@ public class GameManager : MonoBehaviour
 
         currentLevel++;
         itemManager.LevelUp(levels[currentLevel]);
+        timeToResolveSuitcase = levels[currentLevel].timeToResolveSuitcase;
         if (levels[currentLevel].newForbiddenItems == 1)
         {
             bagAnimator.SetTrigger("ReloadBag");
