@@ -246,7 +246,7 @@ public class GameManager : MonoBehaviour
 
     public void ReloadGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private void SuitcaseResolved()
