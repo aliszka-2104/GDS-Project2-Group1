@@ -23,7 +23,7 @@ public static class Save
     {
         PlayerPrefs.SetInt("HighScore", highScore);
         if (Sound) PlayerPrefs.SetInt("Sound", 1);
-        else PlayerPrefs.SetInt("Sound", 0);
+        else PlayerPrefs.SetInt("Sound", -1);
 
         foreach (var achievement in Achievements)
         {
@@ -41,7 +41,7 @@ public static class Save
     public static void LoadGame()
     {
         HighScore = PlayerPrefs.GetInt("HighScore") > 0 ? PlayerPrefs.GetInt("HighScore") : 0;
-        Sound = PlayerPrefs.GetInt("Sound") > 0;
+        Sound = PlayerPrefs.GetInt("Sound") >= 0;
         foreach (var achievementName in achievemntsNames)
         {
             Achievements[achievementName] = PlayerPrefs.GetInt(achievementName) > 0;

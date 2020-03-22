@@ -69,18 +69,35 @@ public class ItemManager : MonoBehaviour
         illegalItemsPerSuitcase = forbiddenCount;
 
         List<GameObject> prefabs = new List<GameObject>();
+        List<GameManager.ITEMS> prefabNames = new List<GameManager.ITEMS>();
         //int legalAdded = 0;
         //int illegalAdded = 0;
 
         for(int i=0;i< forbiddenCount; i++)
         {
             int r = UnityEngine.Random.Range(0, forbiddenInGame.Count);
-            prefabs.Add(forbiddenInGame.ElementAt(r).Value);
+            var item = forbiddenInGame.ElementAt(r);
+            if(prefabNames.Contains(item.Key))
+            {
+                r = UnityEngine.Random.Range(0, forbiddenInGame.Count);
+                item = forbiddenInGame.ElementAt(r);
+            }
+            prefabs.Add(item.Value);
+            prefabNames.Add(item.Key);
         }
         for (int i = 0; i < itemsCount-forbiddenCount; i++)
         {
             int r = UnityEngine.Random.Range(0, legalInGame.Count);
-            prefabs.Add(legalInGame.ElementAt(r).Value);
+            var item = legalInGame.ElementAt(r);
+
+            if (prefabNames.Contains(item.Key))
+            {
+                r = UnityEngine.Random.Range(0, legalInGame.Count);
+                item = legalInGame.ElementAt(r);
+            }
+
+            prefabs.Add(item.Value);
+            prefabNames.Add(item.Key);
         }
         for (int i = 0; i < max-itemsCount; i++)
         {

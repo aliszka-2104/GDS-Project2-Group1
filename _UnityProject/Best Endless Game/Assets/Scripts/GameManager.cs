@@ -107,14 +107,17 @@ public class GameManager : MonoBehaviour
     {
         Save.SetAchievementNames(achievementManager.achievements);
         Save.LoadGame();
+        audioManager.AdjustSound();
+
         gameOver.SetActive(false);
         gameOverHighScore.SetActive(false);
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
 
-        timeToResolveSuitcase = levels[currentLevel].timeToResolveSuitcase;
-        itemManager.LevelUp(levels[currentLevel]);
+        //timeToResolveSuitcase = levels[currentLevel].timeToResolveSuitcase;
+        //itemManager.LevelUp(levels[currentLevel]);
+        LevelUp();
         CreateSuitcase();
         audioManager.PlayBackgroundMusic();
     }
@@ -211,6 +214,11 @@ public class GameManager : MonoBehaviour
         if (score < levels[currentLevel + 1].score) return;
 
         currentLevel++;
+        LevelUp();
+    }
+
+    private void LevelUp()
+    {
         itemManager.LevelUp(levels[currentLevel]);
         timeToResolveSuitcase = levels[currentLevel].timeToResolveSuitcase;
         if (levels[currentLevel].newForbiddenItems == 1)

@@ -30,7 +30,11 @@ public class AudioClipVolume
 
     private void Start()
     {
-        if(Save.Sound)
+    }
+
+    public void AdjustSound()
+    {
+        if (Save.Sound)
         {
             audioSource.volume = 1;
         }

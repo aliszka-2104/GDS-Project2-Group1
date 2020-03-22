@@ -12,7 +12,6 @@ public class ForbiddenItemScreen : MonoBehaviour
     void Awake()
     {
         image = item.GetComponent<Image>();
-        image.SetNativeSize();
         //animator.GetComponent<Animator>();
     }
 
@@ -20,6 +19,7 @@ public class ForbiddenItemScreen : MonoBehaviour
     {
         gameObject.SetActive(true);
         image.sprite = sprite;
+        image.SetNativeSize();
         animator.SetTrigger("Play");
     }
 
