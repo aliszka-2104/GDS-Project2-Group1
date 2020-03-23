@@ -64,7 +64,7 @@ public class ItemManager : MonoBehaviour
         return forbiddenInGame.ElementAt(forbiddenInGame.Count-1).Value.GetComponent<SpriteRenderer>().sprite;
     }
 
-    public List<GameObject> GetPrefabs(int max, int itemsCount, int forbiddenCount)
+    public List<GameObject> GetPrefabs(int max, int itemsCount, int forbiddenCount, bool notTutorial = true)
     {
         illegalItemsPerSuitcase = forbiddenCount;
 
@@ -142,7 +142,7 @@ public class ItemManager : MonoBehaviour
         //    }
         //} while (prefabs.Count < prefabsCount);
 
-        prefabs = prefabs.OrderBy(x => UnityEngine.Random.value).ToList();
+        if(notTutorial) prefabs = prefabs.OrderBy(x => UnityEngine.Random.value).ToList();
         return prefabs;
     }
 

@@ -21,7 +21,7 @@ public class Item : MonoBehaviour
     private Vector2 direction = new Vector2();
     public float speed = 10f;
     private bool isSomeoneTouchingMe = false;
-    private bool isActive = true;
+    public bool isActive = true;
 
     private const float gravity = 9.81f;
     private Vector2 myStartPosition;
@@ -139,36 +139,7 @@ public class Item : MonoBehaviour
         rb.AddForce(direction * speed);
         gameObject.layer = 11;
     }
-
-    IEnumerator SimulateMovement()
-    {
-        //Vector2 end = myStartPosition+direction*speed;
-
-        //var yOffset = 6 - myStartPosition.y;
-        //var xOffset = direction.x / direction.y * yOffset;
-
-        //Vector2 end = new Vector2(myStartPosition.x + xOffset, 6);
-
-        Vector2 end = new Vector2(15 * Mathf.Sign(direction.x) + myStartPosition.x, myStartPosition.y + 2);
-        var offset = 10.0f * direction.y;
-        var duration = 2f / Vector2.SqrMagnitude(direction);
-        duration = Mathf.Clamp(duration, 0.5f, 2f);
-
-        float time = 0;
-        while (time <= duration)
-        {
-            time += Time.deltaTime;
-
-            float linearT = time / duration;
-            float heightT = curve.Evaluate(linearT);
-            float height = Mathf.Lerp(0f, offset, heightT);
-
-            transform.position = Vector2.Lerp(myStartPosition, end, linearT) + new Vector2(0f, height);
-
-            yield return null;
-        }
-    }
-
+    
     void OnBecameInvisible()
     {
         Destroy(gameObject);

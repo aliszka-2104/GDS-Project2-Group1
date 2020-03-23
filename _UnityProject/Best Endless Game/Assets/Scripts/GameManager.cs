@@ -80,10 +80,12 @@ public class GameManager : MonoBehaviour
     public GameObject largeBagPrefab;
     public GameObject mediumBagPrefab;
     public GameObject smallBagPrefab;
+    public GameObject tutorialBagPrefab;
     public bool canInteractWithToys = true;
     public Animator bagAnimator;
     public Animator gameOverAnimator;
     public Animator gameOverHighScoreAnimator;
+    public GameObject tutorialScreen;
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highscoreText;
@@ -99,9 +101,11 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private int itemsRemovedByFar;
 
-    private Suitcase currentSuitcase;
+    private GameObject currentSuitcase;
     private float countDownLeft = 0f;
 
+    private bool paused = false;
+    private bool tutorialPassed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,43 +113,53 @@ public class GameManager : MonoBehaviour
         Save.LoadGame();
         audioManager.AdjustSound();
 
-        gameOver.SetActive(false);
-        gameOverHighScore.SetActive(false);
+        DisactivateWindows();
         Time.timeScale = 1;
-        pauseMenu.SetActive(false);
         scoreText.text = score.ToString();
 
         //timeToResolveSuitcase = levels[currentLevel].timeToResolveSuitcase;
         //itemManager.LevelUp(levels[currentLevel]);
         LevelUp();
-        CreateSuitcase();
+        CreateTutorialSuitcase();
         audioManager.PlayBackgroundMusic();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DisactivateWindows()
     {
-
+        gameOver.SetActive(false);
+        gameOverHighScore.SetActive(false);
+        pauseMenu.SetActive(false);
+        forbiddenItemScreen.Hide();
     }
 
     public void PauseGame()
     {
-        Pause();
-        pauseMenu.SetActive(true);
-    }
-
-    public void Pause()
-    {
+        if (!tutorialPassed) return;
         Time.timeScale = 0;
         canInteractWithToys = false;
+        pauseMenu.SetActive(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
-        forbiddenItemScreen.Hide();
         canInteractWithToys = true;
+    }
+
+    public void PauseGameplay()
+    {
+        canInteractWithToys = false;
+        light.PauseBlinking();
+        paused = true;
+    }
+
+    public void ResumeGameplay()
+    {
+        canInteractWithToys = true;
+        light.ResumeBlinking();
+        paused = false;
+        DisactivateWindows();
     }
 
     private GameObject GetRandomBagPrefab()
@@ -166,18 +180,41 @@ public class GameManager : MonoBehaviour
 
     private void CreateSuitcase()
     {
-        bagAnimator.SetTrigger("ReloadBag");
-        //bagAnimator.SetFloat("RepeatTime", 5f);
-
         StartCoroutine(StartCountdown(timeToResolveSuitcase));
         var suitcase = Instantiate(GetRandomBagPrefab());
-        currentSuitcase = suitcase.GetComponent<Suitcase>();
+        currentSuitcase = suitcase;
 
         itemsRemovedByFar = 0;
-        canInteractWithToys = true;
-        //timeText.text = timeToResolveSuitcase.ToString();
         light.StartBlinking(timeToResolveSuitcase);
+        StartCoroutine(PlayNewBagEffects());
+    }
+
+    private void CreateTutorialSuitcase()
+    {
+        var suitcase = Instantiate(tutorialBagPrefab);
+        currentSuitcase = suitcase;
+
+        itemsRemovedByFar = 0;
+        light.TutorialBlink();
+        StartCoroutine(PlayNewBagEffects());
+    }
+
+    private IEnumerator PlayNewBagEffects()
+    {
+        while (paused)
+        {
+            yield return null;
+        }
+        
+        canInteractWithToys = true;
         audioManager.PlayNewBag();
+        bagAnimator.SetTrigger("ReloadBag");
+
+        if (!tutorialPassed)
+        {
+            yield return new WaitForSeconds(.3f);
+            tutorialScreen.SetActive(true);
+        }
     }
 
     public void ItemSwiped(Item item)
@@ -190,7 +227,7 @@ public class GameManager : MonoBehaviour
         {
             score++;
             itemsRemovedByFar++;
-            if(achievementManager.CheckAchievement(score))
+            if (achievementManager.CheckAchievement(score))
             {
                 audioManager.PlayTrophy();
             }
@@ -225,7 +262,7 @@ public class GameManager : MonoBehaviour
         {
             bagAnimator.SetTrigger("ReloadBag");
             forbiddenItemScreen.Show(itemManager.GetLatestObjectSprite());
-            Pause();
+            PauseGameplay();
         }
     }
 
@@ -262,14 +299,24 @@ public class GameManager : MonoBehaviour
 
     private void SuitcaseResolved()
     {
+        if (!tutorialPassed)
+        {
+            tutorialPassed = true;
+            tutorialScreen.SetActive(false);
+        }
         light.StopBlinking();
         LevelUpIfYouShould();
-        Destroy(currentSuitcase.gameObject);
+        Destroy(currentSuitcase);
         CreateSuitcase();
     }
 
     private IEnumerator StartCountdown(float countdownValue)
     {
+        while (paused || !tutorialPassed)
+        {
+            yield return null;
+        }
+
         countDownLeft = countdownValue;
         while (countDownLeft > -1)
         {
