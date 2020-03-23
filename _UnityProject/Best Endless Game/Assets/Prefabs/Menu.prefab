@@ -45,3 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creditsPrefab: {fileID: 1876448078394291772, guid: e9684842e1f269e4f8b94e2a48df1ef4,
     type: 3}
+  achievementsPrefab: {fileID: 1876448078394291772, guid: 72ea6a8a8b4be4b43beb665a4e2e640d,
+    type: 3}
+  audioManager: {fileID: 6611032632916152773, guid: 03e2f16b02d680b42b915a58d1b37680,
+    type: 3}

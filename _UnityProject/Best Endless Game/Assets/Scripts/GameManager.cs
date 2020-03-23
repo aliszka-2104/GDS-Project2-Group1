@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
     public Animator gameOverHighScoreAnimator;
     public GameObject tutorialScreen;
 
+    public GameObject pause;
+
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highscoreText;
     [SerializeField] private Text gameOverScoreText;
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         Save.SetAchievementNames(achievementManager.achievements);
         Save.LoadGame();
         audioManager.AdjustSound();
@@ -122,6 +125,7 @@ public class GameManager : MonoBehaviour
         LevelUp();
         CreateTutorialSuitcase();
         audioManager.PlayBackgroundMusic();
+        pause.gameObject.SetActive(false);
     }
 
     private void DisactivateWindows()
@@ -226,8 +230,9 @@ public class GameManager : MonoBehaviour
         else
         {
             score++;
+            Save.TotalScore++;
             itemsRemovedByFar++;
-            if (achievementManager.CheckAchievement(score))
+            if (achievementManager.CheckAchievement())
             {
                 audioManager.PlayTrophy();
             }
@@ -303,6 +308,7 @@ public class GameManager : MonoBehaviour
         {
             tutorialPassed = true;
             tutorialScreen.SetActive(false);
+            pause.gameObject.SetActive(true);
         }
         light.StopBlinking();
         LevelUpIfYouShould();

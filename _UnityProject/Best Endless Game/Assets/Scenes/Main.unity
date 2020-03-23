@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -322,172 +322,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82785868}
   m_CullTransparentMesh: 0
---- !u!1 &100339560
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 100339563}
-  - component: {fileID: 100339562}
-  - component: {fileID: 100339561}
-  m_Layer: 0
-  m_Name: __AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &100339561
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100339560}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: eeacd0dc16e116641a382530d1c92d06, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &100339562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100339560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7cbb91669c371f44a0113a40c9930b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: eeacd0dc16e116641a382530d1c92d06, type: 3}
-  gameOver:
-  - audioClip: {fileID: 8300000, guid: 1720e3609ea9a074cbe2b3105b4ef8f6, type: 3}
-    volume: 0.1
-  - audioClip: {fileID: 8300000, guid: 876a8fffb82fdd146a0936006279b9aa, type: 3}
-    volume: 0.1
-  - audioClip: {fileID: 8300000, guid: 53bef5b9354afd64a9f82e1efcb5257a, type: 3}
-    volume: 0.8
-  - audioClip: {fileID: 8300000, guid: 7b60743dadcc05b4f84c37d3776ffe63, type: 3}
-    volume: 0.1
-  newBag:
-  - audioClip: {fileID: 8300000, guid: dd22d8ff998384846a1cbaf9c8453ac7, type: 3}
-    volume: 1
-  itemGrabed:
-  - audioClip: {fileID: 8300000, guid: c1d8156a0ebbee44bbb420b19724541c, type: 3}
-    volume: 0.1
-  itemThrown:
-  - audioClip: {fileID: 8300000, guid: df7bf709ce1bf3241b944758ff6d7232, type: 3}
-    volume: 0.1
-  - audioClip: {fileID: 8300000, guid: b4b278a9eb6e09146b45509c2bc6bddc, type: 3}
-    volume: 0.1
-  - audioClip: {fileID: 8300000, guid: 069491fe9903b574eb10be01fc10aaf5, type: 3}
-    volume: 0.1
-  achievement:
-  - audioClip: {fileID: 8300000, guid: a58f845d7b10c224aa6d8bf2bbc3f970, type: 3}
-    volume: 1
---- !u!4 &100339563
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100339560}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &145029403
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,15 +563,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   achievements:
-  - score: 5
-    name: A1
-    image: {fileID: 21300000, guid: ac1670b18a930c24b83a1ab4a68eea34, type: 3}
   - score: 10
-    name: A2
-    image: {fileID: 21300000, guid: 18f53135c1c8da542a7092eacc5a0bb4, type: 3}
-  - score: 15
-    name: A3
-    image: {fileID: 21300000, guid: 250865c107c61f34285660880ef35b61, type: 3}
+    name: a10
+    image: {fileID: 21300000, guid: b333f4fbc662331488ce1ea0a7cc8287, type: 3}
+  - score: 100
+    name: a100
+    image: {fileID: 21300000, guid: afc60de070e1f814aa50c66d66b0338a, type: 3}
+  - score: 250
+    name: a250
+    image: {fileID: 21300000, guid: f8a6f015c5e90ef4ba2bab6189cb4183, type: 3}
   achievementScreen: {fileID: 428875489}
   time: 1.5
 --- !u!4 &176847484
@@ -752,7 +586,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &180413351
 GameObject:
@@ -1171,7 +1005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ac1670b18a930c24b83a1ab4a68eea34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8a6f015c5e90ef4ba2bab6189cb4183, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1203,11 +1037,11 @@ RectTransform:
   m_Father: {fileID: 1456255601}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 117.599976, y: 0}
-  m_SizeDelta: {x: 235.20001, y: 235.20001}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 298.8, y: 46}
+  m_SizeDelta: {x: 384, y: 300}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &479724482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2265,7 +2099,7 @@ Transform:
   m_Children:
   - {fileID: 1042037164}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1315861398
 GameObject:
@@ -2537,7 +2371,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3698,8 +3532,30 @@ MonoBehaviour:
     smallBagChance: 33.333332
     mediumBagChance: 33.333332
     largeBagChance: 33.333332
+  - score: 75
+    newLegalItems: 0
+    timeToResolveSuitcase: 1.5
+    newForbiddenItems: 1
+    smallBagChance: 0
+    mediumBagChance: 50
+    largeBagChance: 50
+  - score: 125
+    newLegalItems: 0
+    timeToResolveSuitcase: 1.5
+    newForbiddenItems: 1
+    smallBagChance: 10
+    mediumBagChance: 30
+    largeBagChance: 60
+  - score: 200
+    newLegalItems: 0
+    timeToResolveSuitcase: 1
+    newForbiddenItems: 1
+    smallBagChance: 10
+    mediumBagChance: 30
+    largeBagChance: 60
   itemManager: {fileID: 793251249}
-  audioManager: {fileID: 100339562}
+  audioManager: {fileID: 6611032632916152773, guid: 03e2f16b02d680b42b915a58d1b37680,
+    type: 3}
   achievementManager: {fileID: 176847483}
   largeBagPrefab: {fileID: 3401713901367617423, guid: a7088d2444f691e47ad9c49ecd7c25ff,
     type: 3}
@@ -3714,6 +3570,7 @@ MonoBehaviour:
   gameOverAnimator: {fileID: 691451478}
   gameOverHighScoreAnimator: {fileID: 1791372930}
   tutorialScreen: {fileID: 1232332072}
+  pause: {fileID: 1594374944}
   scoreText: {fileID: 1838942868}
   highscoreText: {fileID: 1997092441}
   gameOverScoreText: {fileID: 281315411}

@@ -26,8 +26,9 @@ public class AchievementManager : MonoBehaviour
         achievementScreen.SetActive(false);
     }
 
-    public bool CheckAchievement(int score)
+    public bool CheckAchievement()
     {
+        int score = Save.TotalScore;
         if (!achievements.Any(a => a.score == score)) return false;
 
         var gained = achievements.First(a => a.score == score);
@@ -44,6 +45,7 @@ public class AchievementManager : MonoBehaviour
         Debug.Log("Achievement unlocked! " + gained.name);
         achievementScreen.SetActive(true);
         trophyImageComponent.sprite = gained.image;
+        trophyImageComponent.SetNativeSize();
         yield return new WaitForSecondsRealtime(time);
         achievementScreen.SetActive(false);
     }

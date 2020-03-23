@@ -13,19 +13,31 @@ public class AudioClipVolume
     public class AudioManager : MonoBehaviour
 {
     public AudioClip backgroundMusic;
+    public AudioClip levelMusic;
+    public AudioClip rush;
     public AudioClipVolume[] gameOver;
     public AudioClipVolume[] newBag;
     public AudioClipVolume[] itemGrabed;
     public AudioClipVolume[] itemThrown;
     public AudioClipVolume[] achievement;
 
-    private AudioSource audioSource;
+    public AudioSource soundSource;
+    public AudioSource musicSource;
     private AudioManager manager;
+
+    private static AudioManager instance;
 
     void Awake()
     {
-        //DontDestroyOnLoad(gameObject);
-        audioSource = GetComponent<AudioSource>();
+        if (AudioManager.instance == null)
+        {
+            AudioManager.instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void Start()
@@ -36,17 +48,39 @@ public class AudioClipVolume
     {
         if (Save.Sound)
         {
-            audioSource.volume = 1;
+            soundSource.mute = false;
         }
         else
         {
-            audioSource.volume = 0;
+            soundSource.mute = true;
+        }
+
+        if (Save.Music)
+        {
+            musicSource.mute = false;
+        }
+        else
+        {
+            musicSource.mute = true;
         }
     }
 
     public void PlayBackgroundMusic()
     {
-        //audioSource.PlayOneShot(backgroundMusic);
+        musicSource.Stop();
+        musicSource.clip = levelMusic;
+        musicSource.Play();
+
+        soundSource.Stop();
+    }
+
+    public void PlayMenuMusic()
+    {
+        musicSource.Stop();
+        musicSource.clip = backgroundMusic;
+        musicSource.Play();
+
+        soundSource.Play();
     }
 
     public void PlayGameOverSounds()
@@ -78,7 +112,11 @@ public class AudioClipVolume
     {
         foreach(var clip in clips)
         {
-            audioSource.PlayOneShot(clip.audioClip,clip.volume);
+            soundSource.PlayOneShot(clip.audioClip,clip.volume);
         }
+    }
+    private void Update()
+    {
+        AdjustSound();
     }
 }

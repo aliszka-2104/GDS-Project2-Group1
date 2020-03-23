@@ -113,9 +113,9 @@ MonoBehaviour:
     width: 1536
     height: 731
   m_MinSize: {x: 678, y: 492}
-  m_MaxSize: {x: 14001, y: 14042}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 70
+  controlID: 107
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1116
     height: 731
-  m_MinSize: {x: 403, y: 492}
+  m_MinSize: {x: 402, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 71
+  controlID: 36
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -162,10 +162,10 @@ MonoBehaviour:
     y: 0
     width: 1116
     height: 441
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 40
+  controlID: 37
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -185,8 +185,8 @@ MonoBehaviour:
     y: 0
     width: 212
     height: 441
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 420
     height: 731
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 84584
+  m_LastSelectedObjectID: -88760
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -481,7 +481,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 9090ffff0491ffff4c92ffff68f9ffff46fbffff324e0000
+      m_ExpandedIDs: 9eb6fcffceb7fcff9c87fdff9c8efdff4aa5feff12a8feffe275fffff494ffff32eefffff4ffffffcc3f000042940000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -105.826126, y: 1056.1293, z: -27.383913}
+    m_Target: {x: 2.0485635, y: -0.31666565, z: 173.88086}
     speed: 2
-    m_Value: {x: 2.5166547, y: -0.4659653, z: -1.8211914}
+    m_Value: {x: 2.0485635, y: -0.31666565, z: 173.88086}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -593,9 +593,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 291.8836
+    m_Target: 11.890082
     speed: 2
-    m_Value: 8.090931
+    m_Value: 11.890082
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -659,21 +659,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\_GDS\Zadanie2\repo\GDS-Project2-Group1\_UnityProject\Best
     Endless Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 49}
-    m_SelectedIDs: 64470000
-    m_LastClickedID: 18276
-    m_ExpandedIDs: 00000000963c0000424700004447000046470000484700004a4700004c4700004e47000050470000524700005447000000ca9a3b
+    scrollPos: {x: 0, y: 120}
+    m_SelectedIDs: a6420000
+    m_LastClickedID: 17062
+    m_ExpandedIDs: 00000000a83e00009442000096420000984200009a4200009c4200009e420000a0420000a2420000a4420000a642000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -701,7 +701,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000963c0000424700004447000046470000484700004a4700004c4700004e470000504700005247000054470000
+    m_ExpandedIDs: 00000000a83e00009442000096420000984200009a4200009c4200009e420000a0420000a2420000a4420000a6420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
